@@ -1,12 +1,17 @@
 const app = require("./app");
 const port = 3000
+require("dotenv").config();
 
-const StartServer = ()=> {
+const db = require("./config/db");
+
+const StartServer = async ()=> {
    
     try {
-            
+
+        await db.connectDB();
+
         app.listen(port,()=>{
-            console.log(`server is running on localhost:${port}`);
+            console.log(`server is running on http://localhost:${port}`);
         });
 
     } catch (error) {

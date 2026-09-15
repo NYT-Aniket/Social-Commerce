@@ -1,0 +1,28 @@
+const {z} = require("zod");
+
+const registerSchema = z.object({
+    
+    username: z
+    .string()
+    .trim()
+    .min(3, "Username must be at least 3 characters")
+    .min(30, "Username must be at most 30 characters")
+    .regex(
+        /^[a-zA-Z0-9_]+$/,
+      "Username can only contain letters, numbers and underscores",
+    ),
+
+    email: z
+    .string()
+    .trim()
+    .email("please provide a valid email"),
+    
+    password: z
+    .string()
+    .min(8, "Password must be at least 8 characters"),
+
+});
+
+module.exports = {
+    registerSchema,
+}
